@@ -3,7 +3,7 @@ Pod::Spec.new do |s|
   s.version     = '1.0'
   s.authors     = { 'Roman Efimov' => 'romefimov@gmail.com' }
   s.homepage    = 'https://github.com/romaonthego/REFormattedNumberField'
-  s.summary     = 'UITextField subclass that allows number input in a predefined format..'
+  s.summary     = 'UITextField subclass that allows number input in a predefined format.'
   s.source      = { :git => 'https://github.com/romaonthego/REFormattedNumberField.git',
                     :tag => '1.0' }
   s.license     = { :type => "MIT", :file => "LICENSE" }

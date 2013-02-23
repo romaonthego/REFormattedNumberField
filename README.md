@@ -1,6 +1,6 @@
 # REFormattedNumberField
 
-UITextField subclass that allows numeric input in a predefined format..
+UITextField subclass that allows numeric input in a predefined format.
 
 ![Screenshot of REFormattedNumberField](https://github.com/romaonthego/REFormattedNumberField/raw/master/Screenshot.png "REFormattedNumberField Screenshot")
 

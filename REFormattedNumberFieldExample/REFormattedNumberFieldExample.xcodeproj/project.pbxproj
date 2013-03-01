@@ -266,6 +266,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "REFormattedNumberFieldExample/REFormattedNumberFieldExample-Prefix.pch";
 				INFOPLIST_FILE = "REFormattedNumberFieldExample/REFormattedNumberFieldExample-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -277,6 +278,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "REFormattedNumberFieldExample/REFormattedNumberFieldExample-Prefix.pch";
 				INFOPLIST_FILE = "REFormattedNumberFieldExample/REFormattedNumberFieldExample-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -301,6 +303,7 @@
 				30E0F8D316D6ECBB001949EA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

@@ -101,7 +101,10 @@
 
 - (void)formatInput:(UITextField *)textField
 {
-    self.text = [self string:textField.text withNumberFormat:_format];
+    __typeof (&*self) __weak weakSelf = self;
+    dispatch_async(dispatch_get_main_queue(), ^{
+        textField.text = [weakSelf string:textField.text withNumberFormat:_format];
+    });
 }
 
 @end

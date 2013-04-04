@@ -1,3 +1,10 @@
+## 1.0.3
+[REFormattedNumberField](https://github.com/romaonthego/REFormattedNumberField/compare/1.0.2...1.0.3)
+
+###### Enhancements
+
+* Expose `- (NSString *)string:(NSString *)string withNumberFormat:(NSString *)format;` in headers.
+
 ## 1.0.2
 [REFormattedNumberField](https://github.com/romaonthego/REFormattedNumberField/compare/1.0.1...1.0.2)
 

@@ -1,3 +1,10 @@
+## 1.0.4
+[REFormattedNumberField](https://github.com/romaonthego/REFormattedNumberField/compare/1.0.3...1.0.4)
+
+###### Enhancements
+
+* Add awakeFromNib support for Interface Builder. [#3](https://github.com/romaonthego/REFormattedNumberField/issues/3)
+
 ## 1.0.3
 [REFormattedNumberField](https://github.com/romaonthego/REFormattedNumberField/compare/1.0.2...1.0.3)
 

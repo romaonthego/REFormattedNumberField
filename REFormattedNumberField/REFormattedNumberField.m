@@ -38,6 +38,14 @@
     return self;
 }
 
+- (void)awakeFromNib
+{
+    [super awakeFromNib];
+    self.keyboardType = UIKeyboardTypeNumberPad;
+    self.format = @"X";
+    [self addTarget:self action:@selector(formatInput:) forControlEvents:UIControlEventEditingChanged];
+}
+
 - (NSString *)string:(NSString *)string withNumberFormat:(NSString *)format
 {
     NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"\\D" options:NSRegularExpressionCaseInsensitive error:NULL];

@@ -2,7 +2,7 @@
 
 UITextField subclass that allows numeric input in a predefined format.
 
-![Screenshot of REFormattedNumberField](https://github.com/romaonthego/REFormattedNumberField/raw/master/Screenshot.png "REFormattedNumberField Screenshot")
+<img src="https://github.com/romaonthego/REFormattedNumberField/raw/master/Screenshot.png" alt="REFormattedNumberField Screenshot" width="320" height="480" />
 
 ## Requirements
 * Xcode 4.5 or higher

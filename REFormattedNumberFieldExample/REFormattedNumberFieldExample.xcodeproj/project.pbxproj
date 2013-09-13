@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3010B49F17E359CE006791FB /* NSString+RENumberFormat.m in Sources */ = {isa = PBXBuildFile; fileRef = 3010B49E17E359CE006791FB /* NSString+RENumberFormat.m */; };
 		30E0F8B816D6ECBB001949EA /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30E0F8B716D6ECBB001949EA /* UIKit.framework */; };
 		30E0F8BA16D6ECBB001949EA /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30E0F8B916D6ECBB001949EA /* Foundation.framework */; };
 		30E0F8BC16D6ECBB001949EA /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30E0F8BB16D6ECBB001949EA /* CoreGraphics.framework */; };
@@ -21,6 +22,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3010B49D17E359CE006791FB /* NSString+RENumberFormat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+RENumberFormat.h"; sourceTree = "<group>"; };
+		3010B49E17E359CE006791FB /* NSString+RENumberFormat.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+RENumberFormat.m"; sourceTree = "<group>"; };
 		30E0F8B416D6ECBB001949EA /* REFormattedNumberFieldExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = REFormattedNumberFieldExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		30E0F8B716D6ECBB001949EA /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		30E0F8B916D6ECBB001949EA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -113,6 +116,8 @@
 			children = (
 				30E0F8D816D6ED04001949EA /* REFormattedNumberField.h */,
 				30E0F8D916D6ED04001949EA /* REFormattedNumberField.m */,
+				3010B49D17E359CE006791FB /* NSString+RENumberFormat.h */,
+				3010B49E17E359CE006791FB /* NSString+RENumberFormat.m */,
 			);
 			name = REFormattedNumberField;
 			path = ../REFormattedNumberField;
@@ -183,6 +188,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3010B49F17E359CE006791FB /* NSString+RENumberFormat.m in Sources */,
 				30E0F8C416D6ECBB001949EA /* main.m in Sources */,
 				30E0F8C816D6ECBB001949EA /* AppDelegate.m in Sources */,
 				30E0F8D616D6ECD8001949EA /* RootViewController.m in Sources */,

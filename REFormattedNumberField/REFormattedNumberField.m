@@ -48,6 +48,9 @@
 
 - (NSString *)string:(NSString *)string withNumberFormat:(NSString *)format
 {
+    if (!string)
+        return @"";
+    
     NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"\\D" options:NSRegularExpressionCaseInsensitive error:NULL];
     NSString *stripped = [regex stringByReplacingMatchesInString:string options:0 range:NSMakeRange(0, string.length) withTemplate:@""];
     

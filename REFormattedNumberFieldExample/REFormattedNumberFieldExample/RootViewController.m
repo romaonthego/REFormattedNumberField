@@ -45,7 +45,7 @@
     ccExpirationField.font = [UIFont systemFontOfSize:21];
     [self.view addSubview:ccExpirationField];
     
-    REFormattedNumberField *lengthField = [[REFormattedNumberField alloc] initWithFrame:CGRectMake(20, 220, 280, 30)];
+    REFormattedNumberField *lengthField = [[REFormattedNumberField alloc] initWithFrame:CGRectMake(20, 280, 280, 30)];
     lengthField.backgroundColor = [UIColor whiteColor];
     lengthField.format = @"Xm XXcm";
     lengthField.placeholder = @"1m 80cm";

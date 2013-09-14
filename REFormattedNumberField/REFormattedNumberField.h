@@ -29,6 +29,7 @@
 @interface REFormattedNumberField : UITextField
 
 @property (copy, readwrite, nonatomic) NSString *format;
+@property (copy, readwrite, nonatomic) NSString *test;
 @property (copy, readonly, nonatomic) NSString *unformattedText;
 
 // Use NSString category NSString+RENumberFormat

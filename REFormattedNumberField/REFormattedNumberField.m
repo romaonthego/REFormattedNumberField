@@ -58,8 +58,30 @@
 {
     if (textField.text) {
         dispatch_async(dispatch_get_main_queue(), ^{
-            textField.text = [textField.text re_stringWithNumberFormat:self.format];
+            textField.text = [self.unformattedText re_stringWithNumberFormat:self.format];
         });
+    }
+}
+
+- (void)deleteBackward
+{
+    NSInteger decimalPosition = -1;
+    for (NSInteger i = self.text.length - 1; i > 0; i--) {
+        NSString *c = [self.text substringWithRange:NSMakeRange(i - 1, 1)];
+        
+        BOOL valid;
+        NSCharacterSet *alphaNums = [NSCharacterSet decimalDigitCharacterSet];
+        NSCharacterSet *inStringSet = [NSCharacterSet characterSetWithCharactersInString:c];
+        valid = [alphaNums isSupersetOfSet:inStringSet];
+        if (valid) {
+            decimalPosition = i;
+            break;
+        }
+    }
+    if (decimalPosition == -1) {
+        self.text = @"";
+    } else {
+        self.text = [self.text substringWithRange:NSMakeRange(0, decimalPosition)];
     }
 }
 

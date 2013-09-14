@@ -15,8 +15,11 @@
     if (self.length == 0 || format.length == 0)
         return self;
     
+    format = [format stringByAppendingString:@"X"];
+    NSString *string = [self stringByAppendingString:@"0"];
+    
     NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"\\D" options:NSRegularExpressionCaseInsensitive error:NULL];
-    NSString *stripped = [regex stringByReplacingMatchesInString:self options:0 range:NSMakeRange(0, self.length) withTemplate:@""];
+    NSString *stripped = [regex stringByReplacingMatchesInString:string options:0 range:NSMakeRange(0, string.length) withTemplate:@""];
     
     NSMutableArray *patterns = [[NSMutableArray alloc] init];
     NSMutableArray *separators = [[NSMutableArray alloc] init];
@@ -71,7 +74,7 @@
         if (![modifiedString isEqualToString:stripped])
             result = modifiedString;
     }
-    return result;
+    return [result substringWithRange:NSMakeRange(0, result.length - 1)];
 }
 
 @end

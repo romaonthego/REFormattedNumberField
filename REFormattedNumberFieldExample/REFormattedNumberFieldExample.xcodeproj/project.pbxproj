@@ -149,7 +149,7 @@
 		30E0F8AC16D6ECBA001949EA /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0460;
+				LastUpgradeCheck = 0500;
 				ORGANIZATIONNAME = "Roman Efimov";
 			};
 			buildConfigurationList = 30E0F8AF16D6ECBA001949EA /* Build configuration list for PBXProject "REFormattedNumberFieldExample" */;
@@ -269,7 +269,6 @@
 		30E0F8D216D6ECBB001949EA /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "REFormattedNumberFieldExample/REFormattedNumberFieldExample-Prefix.pch";
 				INFOPLIST_FILE = "REFormattedNumberFieldExample/REFormattedNumberFieldExample-Info.plist";
@@ -282,7 +281,6 @@
 		30E0F8D316D6ECBB001949EA /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "REFormattedNumberFieldExample/REFormattedNumberFieldExample-Prefix.pch";
 				INFOPLIST_FILE = "REFormattedNumberFieldExample/REFormattedNumberFieldExample-Info.plist";

@@ -25,7 +25,9 @@
 
 #import "REFormattedNumberField.h"
 
-@implementation REFormattedNumberField
+@implementation REFormattedNumberField{
+    NSString *currentFormattedText;
+}
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -56,9 +58,12 @@
 
 - (void)formatInput:(UITextField *)textField
 {
-    if (textField.text) {
+    //if it was not deleteBackward event
+    if (![textField.text isEqualToString:currentFormattedText]) {
+        __typeof (&*self) __weak weakSelf = self;
         dispatch_async(dispatch_get_main_queue(), ^{
-            textField.text = [self.unformattedText re_stringWithNumberFormat:self.format];
+            textField.text = [weakSelf.unformattedText re_stringWithNumberFormat:weakSelf.format];
+            currentFormattedText = textField.text;
         });
     }
 }
@@ -78,11 +83,19 @@
             break;
         }
     }
+    
     if (decimalPosition == -1) {
         self.text = @"";
     } else {
         self.text = [self.text substringWithRange:NSMakeRange(0, decimalPosition)];
     }
+    
+    NSLog(@"self.text - %@, currentDecimalPosition - %i", self.text, decimalPosition);
+    
+    currentFormattedText = self.text;
+    
+    //Since iOS6 the UIControlEventEditingChanged is not triggered by programmatically changing the text property of UITextField.
+    [self sendActionsForControlEvents:UIControlEventEditingChanged];
 }
 
 - (NSString *)unformattedText

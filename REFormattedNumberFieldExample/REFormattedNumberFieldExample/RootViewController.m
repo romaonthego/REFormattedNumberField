@@ -61,7 +61,8 @@
 #pragma mark -
 #pragma mark Handle events
 
-- (void)textDidChange:(UITextField *)textField {
+- (void)textDidChange:(UITextField *)textField
+{
     NSLog(@"textField.placeholder %@ textDidChange %@", textField.placeholder, textField.text);
 }
 

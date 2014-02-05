@@ -70,6 +70,7 @@
             __typeof (self) __strong strongSelf = weakSelf;
             textField.text = [strongSelf.unformattedText re_stringWithNumberFormat:strongSelf.format];
             strongSelf.currentFormattedText = textField.text;
+            [strongSelf sendActionsForControlEvents:UIControlEventEditingChanged];
         });
     }
 }

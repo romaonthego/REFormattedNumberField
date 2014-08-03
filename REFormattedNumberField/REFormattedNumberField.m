@@ -106,8 +106,20 @@
 
 - (NSString *)unformattedText
 {
-    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"\\D" options:NSRegularExpressionCaseInsensitive error:NULL];
-    return [regex stringByReplacingMatchesInString:self.text options:0 range:NSMakeRange(0, self.text.length) withTemplate:@""];
+    NSString *trimmedFromat = [[self.format componentsSeparatedByCharactersInSet:[[NSCharacterSet characterSetWithCharactersInString:@"0123456789X"] invertedSet]] componentsJoinedByString:@""];
+    NSString *trimmedText = [[self.text componentsSeparatedByCharactersInSet:[[NSCharacterSet decimalDigitCharacterSet] invertedSet]] componentsJoinedByString:@""];
+
+    NSMutableString *unformattedText = [NSMutableString string];
+    NSUInteger length = MIN([trimmedFromat length], [trimmedText length]);
+
+    for (NSUInteger i = 0; i < length; ++i) {
+        NSRange range = NSMakeRange(i, 1);
+        if ([[trimmedFromat substringWithRange:range] isEqualToString:@"X"]) {
+            [unformattedText appendString:[trimmedText substringWithRange:range]];
+        }
+    }
+
+    return [unformattedText copy];
 }
 
 @end

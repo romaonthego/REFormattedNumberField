@@ -114,8 +114,10 @@
 
     for (NSUInteger i = 0; i < length; ++i) {
         NSRange range = NSMakeRange(i, 1);
-        if ([[trimmedFromat substringWithRange:range] isEqualToString:@"X"]) {
-            [unformattedText appendString:[trimmedText substringWithRange:range]];
+
+        NSString *symbol = [trimmedText substringWithRange:range];
+        if (![[trimmedFromat substringWithRange:range] isEqualToString:symbol]) {
+            [unformattedText appendString:symbol];
         }
     }
 

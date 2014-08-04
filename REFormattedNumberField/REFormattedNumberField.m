@@ -79,13 +79,9 @@
 {
     NSInteger decimalPosition = -1;
     for (NSInteger i = self.text.length - 1; i > 0; i--) {
-        NSString *c = [self.text substringWithRange:NSMakeRange(i - 1, 1)];
-        
-        BOOL valid;
-        NSCharacterSet *alphaNums = [NSCharacterSet decimalDigitCharacterSet];
-        NSCharacterSet *inStringSet = [NSCharacterSet characterSetWithCharactersInString:c];
-        valid = [alphaNums isSupersetOfSet:inStringSet];
-        if (valid) {
+        NSString *c = [self.format substringWithRange:NSMakeRange(i - 1, 1)];
+
+        if ([c isEqualToString:@"X"]) {
             decimalPosition = i;
             break;
         }

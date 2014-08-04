@@ -79,13 +79,9 @@
 {
     NSInteger decimalPosition = -1;
     for (NSInteger i = self.text.length - 1; i > 0; i--) {
-        NSString *c = [self.text substringWithRange:NSMakeRange(i - 1, 1)];
-        
-        BOOL valid;
-        NSCharacterSet *alphaNums = [NSCharacterSet decimalDigitCharacterSet];
-        NSCharacterSet *inStringSet = [NSCharacterSet characterSetWithCharactersInString:c];
-        valid = [alphaNums isSupersetOfSet:inStringSet];
-        if (valid) {
+        NSString *c = [self.format substringWithRange:NSMakeRange(i - 1, 1)];
+
+        if ([c isEqualToString:@"X"]) {
             decimalPosition = i;
             break;
         }
@@ -106,8 +102,22 @@
 
 - (NSString *)unformattedText
 {
-    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"\\D" options:NSRegularExpressionCaseInsensitive error:NULL];
-    return [regex stringByReplacingMatchesInString:self.text options:0 range:NSMakeRange(0, self.text.length) withTemplate:@""];
+    NSString *trimmedFromat = [[self.format componentsSeparatedByCharactersInSet:[[NSCharacterSet characterSetWithCharactersInString:@"0123456789X"] invertedSet]] componentsJoinedByString:@""];
+    NSString *trimmedText = [[self.text componentsSeparatedByCharactersInSet:[[NSCharacterSet decimalDigitCharacterSet] invertedSet]] componentsJoinedByString:@""];
+
+    NSMutableString *unformattedText = [NSMutableString string];
+    NSUInteger length = MIN([trimmedFromat length], [trimmedText length]);
+
+    for (NSUInteger i = 0; i < length; ++i) {
+        NSRange range = NSMakeRange(i, 1);
+
+        NSString *symbol = [trimmedText substringWithRange:range];
+        if (![[trimmedFromat substringWithRange:range] isEqualToString:symbol]) {
+            [unformattedText appendString:symbol];
+        }
+    }
+
+    return [unformattedText copy];
 }
 
 @end

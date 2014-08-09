@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name        = 'REFormattedNumberField'
-  s.version     = '1.1.3'
+  s.version     = '1.1.4'
   s.authors     = { 'Roman Efimov' => 'romefimov@gmail.com' }
   s.homepage    = 'https://github.com/romaonthego/REFormattedNumberField'
   s.summary     = 'UITextField subclass that allows number input in a predefined format.'

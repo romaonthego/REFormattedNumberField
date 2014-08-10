@@ -123,6 +123,10 @@
 
 - (NSRange)unformattedTextRangeWithRange:(NSRange)range
 {
+    if (![self.format length]) {
+        return range;
+    }
+
     NSRange unformattedTextRange = NSMakeRange(0, 0);
 
     for (NSInteger i = 0; i < range.location; ++i) {

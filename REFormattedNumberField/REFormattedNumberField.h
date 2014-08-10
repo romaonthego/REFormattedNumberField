@@ -26,7 +26,7 @@
 #import <UIKit/UIKit.h>
 #import "NSString+RENumberFormat.h"
 
-@interface REFormattedNumberField : UITextField
+@interface REFormattedNumberField : UITextField <UITextFieldDelegate>
 
 @property (copy, readwrite, nonatomic) NSString *format;
 @property (copy, readonly, nonatomic) NSString *unformattedText;

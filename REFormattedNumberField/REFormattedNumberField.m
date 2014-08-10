@@ -28,18 +28,25 @@
 @interface REFormattedNumberField ()
 
 @property (copy, readwrite, nonatomic) NSString *currentFormattedText;
+@property (weak, readwrite, nonatomic) id<UITextFieldDelegate> originalDelegate;
 
 @end
 
 @implementation REFormattedNumberField
 
+- (void)commonInit
+{
+    self.keyboardType = UIKeyboardTypeNumberPad;
+    self.format = @"X";
+
+    [super setDelegate:self];
+}
+
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:(CGRect)frame];
     if (self) {
-        self.keyboardType = UIKeyboardTypeNumberPad;
-        self.format = @"X";
-        [self addTarget:self action:@selector(formatInput:) forControlEvents:UIControlEventEditingChanged];
+        [self commonInit];
     }
     return self;
 }
@@ -47,57 +54,109 @@
 - (void)awakeFromNib
 {
     [super awakeFromNib];
-    self.keyboardType = UIKeyboardTypeNumberPad;
-    self.format = @"X";
-    [self addTarget:self action:@selector(formatInput:) forControlEvents:UIControlEventEditingChanged];
+
+    [self commonInit];
 }
 
 - (NSString *)string:(NSString *)string withNumberFormat:(NSString *)format
 {
     if (!string)
         return @"";
-    
     return [string re_stringWithNumberFormat:format];
 }
 
-- (void)formatInput:(UITextField *)textField
+- (void)setDelegate:(id<UITextFieldDelegate>)delegate
 {
-    // If it was not deleteBackward event
-    //
-    if (![textField.text isEqualToString:self.currentFormattedText]) {
-        __typeof (self) __weak weakSelf = self;
-        dispatch_async(dispatch_get_main_queue(), ^{
-            __typeof (self) __strong strongSelf = weakSelf;
-            textField.text = [strongSelf.unformattedText re_stringWithNumberFormat:strongSelf.format];
-            strongSelf.currentFormattedText = textField.text;
-            [strongSelf sendActionsForControlEvents:UIControlEventEditingChanged];
-        });
-    }
+    self.originalDelegate = delegate;
 }
 
-- (void)deleteBackward
+- (id<UITextFieldDelegate>)delegate
 {
-    NSInteger decimalPosition = -1;
-    for (NSInteger i = self.text.length - 1; i > 0; i--) {
-        NSString *c = [self.format substringWithRange:NSMakeRange(i - 1, 1)];
+    return self.originalDelegate;
+}
+
+- (id)forwardingTargetForSelector:(SEL)aSelector
+{
+    if ([self.originalDelegate respondsToSelector:aSelector]) {
+        return self.originalDelegate;
+    }
+    return [super forwardingTargetForSelector:aSelector];
+}
+
+- (BOOL)respondsToSelector:(SEL)aSelector
+{
+    BOOL respondsToSelector = [super respondsToSelector:aSelector];
+
+    if (!respondsToSelector) {
+        respondsToSelector = [self.originalDelegate respondsToSelector:aSelector];
+    }
+    return respondsToSelector;
+}
+
+#pragma mark - UITextFieldDelegate
+
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
+{
+    if (![string length] && range.length == 1) {
+        range = [self decimalRangeWithRange:range];
+    }
+
+    if ([self.originalDelegate respondsToSelector:@selector(textField:shouldChangeCharactersInRange:replacementString:)]) {
+
+        if (![self.originalDelegate textField:textField shouldChangeCharactersInRange:range replacementString:string]) {
+            return NO;
+        }
+    }
+
+    NSString *unformattedText = [self unformattedText];
+    NSRange unformatedTextRange = [self unformattedTextRangeWithRange:range];
+
+    NSString *text = [unformattedText stringByReplacingCharactersInRange:unformatedTextRange withString:string];
+    self.text = [text re_stringWithNumberFormat:self.format];
+
+    [self sendActionsForControlEvents:UIControlEventEditingChanged];
+
+    return NO;
+}
+
+#pragma mark - Private methods
+
+- (NSRange)unformattedTextRangeWithRange:(NSRange)range
+{
+    NSRange unformattedTextRange = NSMakeRange(0, 0);
+
+    for (NSInteger i = 0; i < range.location; ++i) {
+        if ([self.format characterAtIndex:i] == 'X') {
+            ++unformattedTextRange.location;
+        }
+    }
+
+    for (NSInteger i = range.location; i < (range.location + range.length); ++i) {
+        if ([self.format characterAtIndex:i] == 'X') {
+            ++unformattedTextRange.length;
+        }
+    }
+
+    return unformattedTextRange;
+}
+
+- (NSRange)decimalRangeWithRange:(NSRange)range
+{
+    NSRange decimalRange = range;
+
+    for (NSInteger i = range.location + range.length - 1; i > 0; i--) {
+        NSString *c = [self.format substringWithRange:NSMakeRange(i, 1)];
 
         if ([c isEqualToString:@"X"]) {
-            decimalPosition = i;
+
+            decimalRange.location = i;
+            decimalRange.length = (range.location + range.length) - i;
+
             break;
         }
     }
-    
-    if (decimalPosition == -1) {
-        self.text = @"";
-    } else {
-        self.text = [self.text substringWithRange:NSMakeRange(0, decimalPosition)];
-    }
-    
-    self.currentFormattedText = self.text;
-    
-    //Since iOS6 the UIControlEventEditingChanged is not triggered by programmatically changing the text property of UITextField.
-    //
-    [self sendActionsForControlEvents:UIControlEventEditingChanged];
+
+    return decimalRange;
 }
 
 - (NSString *)unformattedText

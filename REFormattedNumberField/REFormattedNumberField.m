@@ -93,6 +93,12 @@
     return respondsToSelector;
 }
 
+- (void)setText:(NSString *)text
+{
+    NSString *formattedText = [text re_stringWithNumberFormat:self.format];
+    [super setText:formattedText];
+}
+
 #pragma mark - UITextFieldDelegate
 
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
@@ -115,8 +121,7 @@
     NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"\\D" options:NSRegularExpressionCaseInsensitive error:NULL];
     text = [regex stringByReplacingMatchesInString:text options:0 range:NSMakeRange(0, [text length]) withTemplate:@""];
 
-    self.text = [text re_stringWithNumberFormat:self.format];
-
+    self.text = text;
     [self sendActionsForControlEvents:UIControlEventEditingChanged];
 
     return NO;

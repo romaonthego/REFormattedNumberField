@@ -112,6 +112,9 @@
     NSRange unformatedTextRange = [self unformattedTextRangeWithRange:range];
 
     NSString *text = [unformattedText stringByReplacingCharactersInRange:unformatedTextRange withString:string];
+    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"\\D" options:NSRegularExpressionCaseInsensitive error:NULL];
+    text = [regex stringByReplacingMatchesInString:text options:0 range:NSMakeRange(0, [text length]) withTemplate:@""];
+
     self.text = [text re_stringWithNumberFormat:self.format];
 
     [self sendActionsForControlEvents:UIControlEventEditingChanged];

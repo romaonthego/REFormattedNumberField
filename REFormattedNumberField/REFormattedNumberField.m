@@ -77,7 +77,7 @@
 
 - (id)forwardingTargetForSelector:(SEL)aSelector
 {
-    if ([self.originalDelegate respondsToSelector:aSelector]) {
+    if ([self.originalDelegate respondsToSelector:aSelector] && self.originalDelegate != self) {
         return self.originalDelegate;
     }
     return [super forwardingTargetForSelector:aSelector];
@@ -87,7 +87,7 @@
 {
     BOOL respondsToSelector = [super respondsToSelector:aSelector];
 
-    if (!respondsToSelector) {
+    if (!respondsToSelector && self.originalDelegate != self) {
         respondsToSelector = [self.originalDelegate respondsToSelector:aSelector];
     }
     return respondsToSelector;
@@ -101,7 +101,7 @@
         range = [self decimalRangeWithRange:range];
     }
 
-    if ([self.originalDelegate respondsToSelector:@selector(textField:shouldChangeCharactersInRange:replacementString:)]) {
+    if ([self.originalDelegate respondsToSelector:@selector(textField:shouldChangeCharactersInRange:replacementString:)] && self.originalDelegate != self) {
 
         if (![self.originalDelegate textField:textField shouldChangeCharactersInRange:range replacementString:string]) {
             return NO;

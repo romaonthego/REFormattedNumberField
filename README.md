@@ -5,9 +5,9 @@ UITextField subclass that allows numeric input in a predefined format.
 <img src="https://github.com/romaonthego/REFormattedNumberField/raw/master/Screenshot.png?3" alt="REFormattedNumberField Screenshot" width="320" height="568" />
 
 ## Requirements
-* Xcode 5 or higher
+* Xcode 6 or higher
 * Apple LLVM compiler
-* iOS 6.0 or higher
+* iOS 7.0 or higher
 * ARC
 
 ## Demo
@@ -39,8 +39,8 @@ $ edit Podfile
 Edit your Podfile and add REFormattedNumberField:
 
 ``` bash
-platform :ios, '6.0'
-pod 'REFormattedNumberField', '~> 1.1.3'
+platform :ios, '7.0'
+pod 'REFormattedNumberField', '~> 1.1.4'
 ```
 
 Install into your Xcode project:

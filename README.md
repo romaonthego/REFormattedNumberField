@@ -40,7 +40,7 @@ Edit your Podfile and add REFormattedNumberField:
 
 ``` bash
 platform :ios, '7.0'
-pod 'REFormattedNumberField', '~> 1.1.4'
+pod 'REFormattedNumberField', '~> 1.1.5'
 ```
 
 Install into your Xcode project:

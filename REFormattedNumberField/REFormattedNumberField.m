@@ -80,6 +80,7 @@
     }
 }
 
+/*
 - (void)deleteBackward
 {
     NSInteger decimalPosition = -1;
@@ -104,6 +105,7 @@
     //
     [self sendActionsForControlEvents:UIControlEventEditingChanged];
 }
+*/
 
 - (NSString *)unformattedText
 {
@@ -174,6 +176,13 @@
 
 - (BOOL)respondsToSelector:(SEL)aSelector
 {
+    // fixed the 100% cpu used problem
+    NSString * selectorName = NSStringFromSelector(aSelector);
+    
+    if ([selectorName isEqualToString:@"customOverlayContainer"]) {
+        return NO;
+    }
+    
     BOOL respondsToSelector = [super respondsToSelector:aSelector];
     
     if (!respondsToSelector && self.originalDelegate != self) {

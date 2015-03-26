@@ -81,7 +81,6 @@
     }
 }
 
-/*
 - (void)deleteBackward
 {
     NSInteger decimalPosition = -1;
@@ -106,7 +105,7 @@
     //
     [self sendActionsForControlEvents:UIControlEventEditingChanged];
 }
-*/
+
 
 - (NSString *)unformattedText
 {

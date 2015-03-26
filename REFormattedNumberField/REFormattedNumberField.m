@@ -24,6 +24,7 @@
 //
 
 #import "REFormattedNumberField.h"
+#import "NSString+RENumberFormat.h"
 
 @interface REFormattedNumberField () <UITextFieldDelegate>
 

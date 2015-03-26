@@ -10,6 +10,18 @@
 		7E0E2CD31AC41E750016165D /* REFormattedNumberField.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 7E0E2CD21AC41E750016165D /* REFormattedNumberField.h */; };
 		7E0E2CD51AC41E750016165D /* REFormattedNumberField.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E0E2CD41AC41E750016165D /* REFormattedNumberField.m */; };
 		7E0E2CEB1AC41EA80016165D /* NSString+RENumberFormat.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E0E2CEA1AC41EA80016165D /* NSString+RENumberFormat.m */; };
+		7E0E2CF71AC420C60016165D /* REFormattedNumberField-iOS-dynamic.h in Headers */ = {isa = PBXBuildFile; fileRef = 7E0E2CF61AC420C60016165D /* REFormattedNumberField-iOS-dynamic.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		7E0E2D0B1AC420D90016165D /* NSString+RENumberFormat.h in Headers */ = {isa = PBXBuildFile; fileRef = 7E0E2CE91AC41EA80016165D /* NSString+RENumberFormat.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		7E0E2D0C1AC420D90016165D /* NSString+RENumberFormat.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E0E2CEA1AC41EA80016165D /* NSString+RENumberFormat.m */; };
+		7E0E2D0D1AC420D90016165D /* REFormattedNumberField.h in Headers */ = {isa = PBXBuildFile; fileRef = 7E0E2CD21AC41E750016165D /* REFormattedNumberField.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		7E0E2D0E1AC420D90016165D /* REFormattedNumberField.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E0E2CD41AC41E750016165D /* REFormattedNumberField.m */; };
+		7E0E2D0F1AC420D90016165D /* REFormattedNumberField-headers.h in Headers */ = {isa = PBXBuildFile; fileRef = 7E0E2CEC1AC41F510016165D /* REFormattedNumberField-headers.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		7E0E2D121AC425810016165D /* NSString+RENumberFormat.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E0E2CEA1AC41EA80016165D /* NSString+RENumberFormat.m */; };
+		7E0E2D131AC425810016165D /* REFormattedNumberField.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E0E2CD41AC41E750016165D /* REFormattedNumberField.m */; };
+		7E0E2D161AC425810016165D /* REFormattedNumberField-iOS-dynamic.h in Headers */ = {isa = PBXBuildFile; fileRef = 7E0E2CF61AC420C60016165D /* REFormattedNumberField-iOS-dynamic.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		7E0E2D171AC425810016165D /* REFormattedNumberField.h in Headers */ = {isa = PBXBuildFile; fileRef = 7E0E2CD21AC41E750016165D /* REFormattedNumberField.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		7E0E2D181AC425810016165D /* REFormattedNumberField-headers.h in Headers */ = {isa = PBXBuildFile; fileRef = 7E0E2CEC1AC41F510016165D /* REFormattedNumberField-headers.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		7E0E2D191AC425810016165D /* NSString+RENumberFormat.h in Headers */ = {isa = PBXBuildFile; fileRef = 7E0E2CE91AC41EA80016165D /* NSString+RENumberFormat.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -33,10 +45,29 @@
 		7E0E2CE91AC41EA80016165D /* NSString+RENumberFormat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+RENumberFormat.h"; sourceTree = "<group>"; };
 		7E0E2CEA1AC41EA80016165D /* NSString+RENumberFormat.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+RENumberFormat.m"; sourceTree = "<group>"; };
 		7E0E2CEC1AC41F510016165D /* REFormattedNumberField-headers.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "REFormattedNumberField-headers.h"; sourceTree = "<group>"; };
+		7E0E2CF21AC420C60016165D /* REFormattedNumberField.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = REFormattedNumberField.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7E0E2CF51AC420C60016165D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7E0E2CF61AC420C60016165D /* REFormattedNumberField-iOS-dynamic.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "REFormattedNumberField-iOS-dynamic.h"; sourceTree = "<group>"; };
+		7E0E2D1E1AC425810016165D /* REFormattedNumberField.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = REFormattedNumberField.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7E0E2D1F1AC425820016165D /* REFormattedNumberField-iOS-dynamic copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "REFormattedNumberField-iOS-dynamic copy-Info.plist"; path = "/Users/dodikk/opensource/REFormattedNumberField/REFormattedNumberField-iOS-dynamic copy-Info.plist"; sourceTree = "<absolute>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		7E0E2CCC1AC41E750016165D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7E0E2CEE1AC420C60016165D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7E0E2D141AC425810016165D /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -51,7 +82,9 @@
 			children = (
 				7E0E2CD11AC41E750016165D /* REFormattedNumberField */,
 				7E0E2CDE1AC41E750016165D /* REFormattedNumberFieldTests */,
+				7E0E2CF31AC420C60016165D /* REFormattedNumberField-iOS-dynamic */,
 				7E0E2CD01AC41E750016165D /* Products */,
+				7E0E2D1F1AC425820016165D /* REFormattedNumberField-iOS-dynamic copy-Info.plist */,
 			);
 			sourceTree = "<group>";
 		};
@@ -59,6 +92,8 @@
 			isa = PBXGroup;
 			children = (
 				7E0E2CCF1AC41E750016165D /* libREFormattedNumberField.a */,
+				7E0E2CF21AC420C60016165D /* REFormattedNumberField.framework */,
+				7E0E2D1E1AC425810016165D /* REFormattedNumberField.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -91,7 +126,49 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		7E0E2CF31AC420C60016165D /* REFormattedNumberField-iOS-dynamic */ = {
+			isa = PBXGroup;
+			children = (
+				7E0E2CF61AC420C60016165D /* REFormattedNumberField-iOS-dynamic.h */,
+				7E0E2CF41AC420C60016165D /* Supporting Files */,
+			);
+			path = "REFormattedNumberField-iOS-dynamic";
+			sourceTree = "<group>";
+		};
+		7E0E2CF41AC420C60016165D /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				7E0E2CF51AC420C60016165D /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		7E0E2CEF1AC420C60016165D /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7E0E2CF71AC420C60016165D /* REFormattedNumberField-iOS-dynamic.h in Headers */,
+				7E0E2D0D1AC420D90016165D /* REFormattedNumberField.h in Headers */,
+				7E0E2D0F1AC420D90016165D /* REFormattedNumberField-headers.h in Headers */,
+				7E0E2D0B1AC420D90016165D /* NSString+RENumberFormat.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7E0E2D151AC425810016165D /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7E0E2D161AC425810016165D /* REFormattedNumberField-iOS-dynamic.h in Headers */,
+				7E0E2D171AC425810016165D /* REFormattedNumberField.h in Headers */,
+				7E0E2D181AC425810016165D /* REFormattedNumberField-headers.h in Headers */,
+				7E0E2D191AC425810016165D /* NSString+RENumberFormat.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
 		7E0E2CCE1AC41E750016165D /* REFormattedNumberField */ = {
@@ -111,6 +188,42 @@
 			productReference = 7E0E2CCF1AC41E750016165D /* libREFormattedNumberField.a */;
 			productType = "com.apple.product-type.library.static";
 		};
+		7E0E2CF11AC420C60016165D /* REFormattedNumberField-iOS-dynamic */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7E0E2D051AC420C60016165D /* Build configuration list for PBXNativeTarget "REFormattedNumberField-iOS-dynamic" */;
+			buildPhases = (
+				7E0E2CED1AC420C60016165D /* Sources */,
+				7E0E2CEE1AC420C60016165D /* Frameworks */,
+				7E0E2CEF1AC420C60016165D /* Headers */,
+				7E0E2CF01AC420C60016165D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "REFormattedNumberField-iOS-dynamic";
+			productName = "REFormattedNumberField-iOS-dynamic";
+			productReference = 7E0E2CF21AC420C60016165D /* REFormattedNumberField.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		7E0E2D101AC425810016165D /* REFormattedNumberField-iOS-static */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7E0E2D1B1AC425810016165D /* Build configuration list for PBXNativeTarget "REFormattedNumberField-iOS-static" */;
+			buildPhases = (
+				7E0E2D111AC425810016165D /* Sources */,
+				7E0E2D141AC425810016165D /* Frameworks */,
+				7E0E2D151AC425810016165D /* Headers */,
+				7E0E2D1A1AC425810016165D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "REFormattedNumberField-iOS-static";
+			productName = "REFormattedNumberField-iOS-dynamic";
+			productReference = 7E0E2D1E1AC425810016165D /* REFormattedNumberField.framework */;
+			productType = "com.apple.product-type.framework";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -121,6 +234,9 @@
 				ORGANIZATIONNAME = healthjoy;
 				TargetAttributes = {
 					7E0E2CCE1AC41E750016165D = {
+						CreatedOnToolsVersion = 6.2;
+					};
+					7E0E2CF11AC420C60016165D = {
 						CreatedOnToolsVersion = 6.2;
 					};
 				};
@@ -138,9 +254,28 @@
 			projectRoot = "";
 			targets = (
 				7E0E2CCE1AC41E750016165D /* REFormattedNumberField */,
+				7E0E2CF11AC420C60016165D /* REFormattedNumberField-iOS-dynamic */,
+				7E0E2D101AC425810016165D /* REFormattedNumberField-iOS-static */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		7E0E2CF01AC420C60016165D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7E0E2D1A1AC425810016165D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		7E0E2CCB1AC41E750016165D /* Sources */ = {
@@ -149,6 +284,24 @@
 			files = (
 				7E0E2CEB1AC41EA80016165D /* NSString+RENumberFormat.m in Sources */,
 				7E0E2CD51AC41E750016165D /* REFormattedNumberField.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7E0E2CED1AC420C60016165D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7E0E2D0C1AC420D90016165D /* NSString+RENumberFormat.m in Sources */,
+				7E0E2D0E1AC420D90016165D /* REFormattedNumberField.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7E0E2D111AC425810016165D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7E0E2D121AC425810016165D /* NSString+RENumberFormat.m in Sources */,
+				7E0E2D131AC425810016165D /* REFormattedNumberField.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -247,6 +400,96 @@
 			};
 			name = Release;
 		};
+		7E0E2D061AC420C60016165D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "REFormattedNumberField-iOS-dynamic/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = REFormattedNumberField;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		7E0E2D071AC420C60016165D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "REFormattedNumberField-iOS-dynamic/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = REFormattedNumberField;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		7E0E2D1C1AC425810016165D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "REFormattedNumberField-iOS-dynamic copy-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				PRODUCT_NAME = REFormattedNumberField;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		7E0E2D1D1AC425810016165D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "REFormattedNumberField-iOS-dynamic copy-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				PRODUCT_NAME = REFormattedNumberField;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -264,6 +507,23 @@
 			buildConfigurations = (
 				7E0E2CE41AC41E750016165D /* Debug */,
 				7E0E2CE51AC41E750016165D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		7E0E2D051AC420C60016165D /* Build configuration list for PBXNativeTarget "REFormattedNumberField-iOS-dynamic" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7E0E2D061AC420C60016165D /* Debug */,
+				7E0E2D071AC420C60016165D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		7E0E2D1B1AC425810016165D /* Build configuration list for PBXNativeTarget "REFormattedNumberField-iOS-static" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7E0E2D1C1AC425810016165D /* Debug */,
+				7E0E2D1D1AC425810016165D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

@@ -34,6 +34,11 @@
 
 @implementation REFormattedNumberField
 
+- (NSString*)format
+{
+    return _format ?: @"X";
+}
+
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:(CGRect)frame];
@@ -52,7 +57,6 @@
 - (void)commonInit
 {
     self.keyboardType = UIKeyboardTypeNumberPad;
-    self.format = @"X";
     [super setDelegate:self];
     [self addTarget:self action:@selector(formatInput:) forControlEvents:UIControlEventEditingChanged];
 }

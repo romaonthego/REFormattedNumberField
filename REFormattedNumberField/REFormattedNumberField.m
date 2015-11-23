@@ -25,10 +25,55 @@
 
 #import "REFormattedNumberField.h"
 
+@interface REFormattedNumberFieldDelegate: NSObject<UITextFieldDelegate>
+
+@property (nonatomic, weak) id<UITextFieldDelegate> originalDelegate;
+
+@end
+
+@implementation REFormattedNumberFieldDelegate
+
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
+{
+    if (range.length == 1 && string.length==0) {
+        [textField deleteBackward];
+        return NO;
+    }
+    
+    if ([self.originalDelegate respondsToSelector:@selector(textField:shouldChangeCharactersInRange:replacementString:)]) {
+        return [self.originalDelegate textField:textField shouldChangeCharactersInRange:range replacementString:string];
+    }
+    
+    return YES;
+}
+
+#pragma mark -
+#pragma mark NSObject method overrides
+
+- (id)forwardingTargetForSelector:(SEL)aSelector
+{
+    if ([self.originalDelegate respondsToSelector:aSelector] && self.originalDelegate != self) {
+        return self.originalDelegate;
+    }
+    return [super forwardingTargetForSelector:aSelector];
+}
+
+- (BOOL)respondsToSelector:(SEL)aSelector
+{
+    BOOL respondsToSelector = [super respondsToSelector:aSelector];
+    
+    if (!respondsToSelector && self.originalDelegate != self) {
+        respondsToSelector = [self.originalDelegate respondsToSelector:aSelector];
+    }
+    return respondsToSelector;
+}
+
+@end
+
 @interface REFormattedNumberField () <UITextFieldDelegate>
 
 @property (copy, readwrite, nonatomic) NSString *currentFormattedText;
-@property (nonatomic, weak) id<UITextFieldDelegate> originalDelegate;
+@property (nonatomic, strong) REFormattedNumberFieldDelegate *strongDelegate;
 
 @end
 
@@ -37,6 +82,13 @@
 - (NSString*)format
 {
     return _format ?: @"X";
+}
+
+- (REFormattedNumberFieldDelegate*)strongDelegate {
+    if (!_strongDelegate) {
+        _strongDelegate = [REFormattedNumberFieldDelegate new];
+    }
+    return _strongDelegate;
 }
 
 - (id)initWithFrame:(CGRect)frame
@@ -56,8 +108,8 @@
 
 - (void)commonInit
 {
+    self.delegate = self.strongDelegate;
     self.keyboardType = UIKeyboardTypeNumberPad;
-    [super setDelegate:self];
     [self addTarget:self action:@selector(formatInput:) forControlEvents:UIControlEventEditingChanged];
 }
 
@@ -133,21 +185,9 @@
     return [unformattedText copy];
 }
 
-#pragma mark -
-#pragma mark UITextFieldDelegate
-
-- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
++ (NSSet*)keyPathsForValuesAffectingUnformattedText
 {
-    if (range.length == 1 && string.length==0) {
-        [self deleteBackward];
-        return NO;
-    }
-    
-    if ([self.originalDelegate respondsToSelector:@selector(textField:shouldChangeCharactersInRange:replacementString:)]) {
-        return [self.originalDelegate textField:textField shouldChangeCharactersInRange:range replacementString:string];
-    }
-    
-    return YES;
+    return [NSSet setWithObject: @"currentFormattedText"];
 }
 
 #pragma mark -
@@ -156,34 +196,13 @@
 - (void)setDelegate:(id<UITextFieldDelegate>)delegate
 {
     [self willChangeValueForKey:@"delegate"];
-    self.originalDelegate = delegate;
+    self.strongDelegate.originalDelegate = delegate;
     [self didChangeValueForKey:@"delegate"];
 }
 
 - (id<UITextFieldDelegate>)delegate
 {
-    return self.originalDelegate;
-}
-
-#pragma mark -
-#pragma mark NSObject method overrides
-
-- (id)forwardingTargetForSelector:(SEL)aSelector
-{
-    if ([self.originalDelegate respondsToSelector:aSelector] && self.originalDelegate != self) {
-        return self.originalDelegate;
-    }
-    return [super forwardingTargetForSelector:aSelector];
-}
-
-- (BOOL)respondsToSelector:(SEL)aSelector
-{
-    BOOL respondsToSelector = [super respondsToSelector:aSelector];
-    
-    if (!respondsToSelector && self.originalDelegate != self) {
-        respondsToSelector = [self.originalDelegate respondsToSelector:aSelector];
-    }
-    return respondsToSelector;
+    return self.strongDelegate.originalDelegate;
 }
 
 @end

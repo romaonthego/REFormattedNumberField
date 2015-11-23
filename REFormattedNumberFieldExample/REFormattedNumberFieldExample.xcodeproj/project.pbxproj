@@ -61,7 +61,9 @@
 				30E0F8B616D6ECBB001949EA /* Frameworks */,
 				30E0F8B516D6ECBB001949EA /* Products */,
 			);
+			indentWidth = 4;
 			sourceTree = "<group>";
+			tabWidth = 4;
 		};
 		30E0F8B516D6ECBB001949EA /* Products */ = {
 			isa = PBXGroup;

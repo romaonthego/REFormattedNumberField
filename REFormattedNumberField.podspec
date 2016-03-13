@@ -8,10 +8,10 @@ Pod::Spec.new do |s|
                     :tag => s.version.to_s }
   s.license     = { :type => "MIT", :file => "LICENSE" }
 
-  s.platform = :ios, '5.0'
+  s.platform = :ios, '7.0'
   s.requires_arc = true
   s.source_files = 'REFormattedNumberField'
   s.public_header_files = 'REFormattedNumberField/*.h'
 
-  s.ios.deployment_target = '5.0'
+  s.ios.deployment_target = '7.0'
 end

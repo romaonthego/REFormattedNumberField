@@ -24,7 +24,8 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "NSString+RENumberFormat.h"
+
+@class NSString;
 
 @interface REFormattedNumberField : UITextField
 
@@ -34,6 +35,7 @@
 // Use NSString category NSString+RENumberFormat
 // - (NSString *)re_stringWithNumberFormat:(NSString *)format;
 //
-- (NSString *)string:(NSString *)string withNumberFormat:(NSString *)format __attribute__ ((deprecated));
+- (NSString *)string:(NSString *)string
+    withNumberFormat:(NSString *)format __attribute__ ((deprecated));
 
 @end

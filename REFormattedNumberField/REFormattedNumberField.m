@@ -24,6 +24,7 @@
 //
 
 #import "REFormattedNumberField.h"
+#import "NSString+RENumberFormat.h"
 
 @interface REFormattedNumberField () <UITextFieldDelegate>
 
@@ -104,6 +105,7 @@
     [self sendActionsForControlEvents:UIControlEventEditingChanged];
 }
 
+
 - (NSString *)unformattedText
 {
     if (!self.format) {
@@ -173,6 +175,13 @@
 
 - (BOOL)respondsToSelector:(SEL)aSelector
 {
+    // fixed the 100% cpu used problem
+    NSString * selectorName = NSStringFromSelector(aSelector);
+    
+    if ([selectorName isEqualToString:@"customOverlayContainer"]) {
+        return NO;
+    }
+    
     BOOL respondsToSelector = [super respondsToSelector:aSelector];
     
     if (!respondsToSelector && self.originalDelegate != self) {

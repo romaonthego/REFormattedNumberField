@@ -34,6 +34,11 @@
 
 @implementation REFormattedNumberField
 
+- (NSString*)format
+{
+    return _format ?: @"X";
+}
+
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:(CGRect)frame];

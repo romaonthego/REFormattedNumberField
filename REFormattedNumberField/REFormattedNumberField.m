@@ -72,32 +72,54 @@
         __typeof (self) __weak weakSelf = self;
         dispatch_async(dispatch_get_main_queue(), ^{
             __typeof (self) __strong strongSelf = weakSelf;
+            UITextRange *startingRange = textField.selectedTextRange;
             textField.text = [strongSelf.unformattedText re_stringWithNumberFormat:strongSelf.format];
             strongSelf.currentFormattedText = textField.text;
+            
+            NSUInteger index = [self offsetFromPosition:self.beginningOfDocument toPosition:startingRange.start];
+            
+            NSString *remaining = [self.format substringFromIndex:MIN(index, self.format.length)];
+            NSString *next = [remaining substringToIndex:MIN(1, remaining.length)];
+            
+            NSString *nonPlaceholderNext = [next stringByReplacingOccurrencesOfString:@"X" withString:@""];
+            
+            NSString *before = [self.format substringToIndex:MIN(index, self.format.length)];
+            NSString *previous = [before substringFromIndex:MAX(((int)before.length)-1, 0)];
+            NSString *nonPlaceholderPrev = [previous stringByReplacingOccurrencesOfString:@"X" withString:@""];
+            
+            UITextPosition *start = [self positionFromPosition:[self beginningOfDocument]
+                                                        offset:MIN(index + nonPlaceholderNext.length + nonPlaceholderPrev.length, textField.text.length)];
+            
+            [self setSelectedTextRange:[self textRangeFromPosition:start toPosition:start]];
             [strongSelf sendActionsForControlEvents:UIControlEventEditingChanged];
         });
     }
 }
 
-- (void)deleteBackward
+- (void)deleteFromRange:(NSRange)range
 {
-    NSInteger decimalPosition = -1;
-    for (NSInteger i = self.text.length - 1; i > 0; i--) {
-        NSString *c = [self.format substringWithRange:NSMakeRange(i - 1, 1)];
-        
-        if ([c isEqualToString:@"X"]) {
-            decimalPosition = i;
-            break;
-        }
-    }
+//    NSString *formattedStringToLocation = [self.format substringWithRange:NSMakeRange(0, range.location+range.length)];
+    NSString *nonPlaceholdersInStarting = [[self.format substringWithRange:NSMakeRange(0, range.location+range.length)] stringByReplacingOccurrencesOfString:@"X" withString:@""];
+    NSUInteger realLocation = range.location - nonPlaceholdersInStarting.length;
     
-    if (decimalPosition == -1) {
-        self.text = @"";
-    } else {
-        self.text = [self.text substringWithRange:NSMakeRange(0, decimalPosition)];
-    }
+    NSString *toDelete = [self.format substringWithRange:NSMakeRange(range.location, range.length)];
     
+    NSUInteger realLength = MAX(range.length - [toDelete stringByReplacingOccurrencesOfString:@"X" withString:@""].length, 1);
+    
+    NSString *unformattedString = self.unformattedText;
+    
+    NSString *unformattedStringToLocation = [unformattedString substringWithRange:NSMakeRange(0, realLocation+realLength)];
+    NSString *unformattedHead = [unformattedStringToLocation substringWithRange:NSMakeRange(0, unformattedStringToLocation.length - realLength)];
+    NSString *unformattedTail = [unformattedString substringWithRange:NSMakeRange(unformattedStringToLocation.length, unformattedString.length - unformattedStringToLocation.length)];
+    
+    self.text = [[unformattedHead stringByAppendingString:unformattedTail] re_stringWithNumberFormat:self.format];
     self.currentFormattedText = self.text;
+    
+    NSUInteger location = range.location;
+    location -= [toDelete stringByReplacingOccurrencesOfString:@"X" withString:@""].length;
+    UITextPosition *start = [self positionFromPosition:[self beginningOfDocument]
+                                                 offset:location];
+    [self setSelectedTextRange:[self textRangeFromPosition:start toPosition:start]];
     
     //Since iOS6 the UIControlEventEditingChanged is not triggered by programmatically changing the text property of UITextField.
     //
@@ -110,17 +132,17 @@
         NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"\\D" options:NSRegularExpressionCaseInsensitive error:NULL];
         return [regex stringByReplacingMatchesInString:self.text options:0 range:NSMakeRange(0, self.text.length) withTemplate:@""];
     }
-    NSString *trimmedFromat = [[self.format componentsSeparatedByCharactersInSet:[[NSCharacterSet characterSetWithCharactersInString:@"0123456789X"] invertedSet]] componentsJoinedByString:@""];
+    NSString *trimmedFormat = [[self.format componentsSeparatedByCharactersInSet:[[NSCharacterSet characterSetWithCharactersInString:@"0123456789X"] invertedSet]] componentsJoinedByString:@""];
     NSString *trimmedText = [[self.text componentsSeparatedByCharactersInSet:[[NSCharacterSet decimalDigitCharacterSet] invertedSet]] componentsJoinedByString:@""];
     
     NSMutableString *unformattedText = [NSMutableString string];
-    NSUInteger length = MIN([trimmedFromat length], [trimmedText length]);
+    NSUInteger length = MIN([trimmedFormat length], [trimmedText length]);
     
     for (NSUInteger i = 0; i < length; ++i) {
         NSRange range = NSMakeRange(i, 1);
         
         NSString *symbol = [trimmedText substringWithRange:range];
-        if (![[trimmedFromat substringWithRange:range] isEqualToString:symbol]) {
+        if (![[trimmedFormat substringWithRange:range] isEqualToString:symbol]) {
             [unformattedText appendString:symbol];
         }
     }
@@ -133,8 +155,8 @@
 
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
 {
-    if (range.length == 1 && string.length==0) {
-        [self deleteBackward];
+    if (string.length==0) {
+        [self deleteFromRange:range];
         return NO;
     }
     
